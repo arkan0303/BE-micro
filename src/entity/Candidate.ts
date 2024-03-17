@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToMany,
+  OneToMany,
+  JoinTable,
+} from "typeorm";
 import { Partai } from "./Partai";
 import { Vote } from "./Vote";
 
@@ -16,10 +23,10 @@ export class Candidate {
   @Column({ type: "json", nullable: true })
   visiMisi: string[];
 
-  @OneToMany((type) => Partai, (partai) => partai.paslon)
-  parties: Candidate[];
+  @ManyToMany(() => Partai, (partai) => partai.paslon, { cascade: true })
+  @JoinTable()
+  partai: Partai[];
 
-  // Relasi dengan tabel Vote (one-to-many)
-  @OneToMany((type) => Vote, (vote) => vote.paslon)
+  @OneToMany(() => Vote, (vote) => vote.paslon)
   votes: Vote[];
 }

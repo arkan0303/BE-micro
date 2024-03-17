@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from "typeorm";
 import { Candidate } from "./Candidate";
 
 @Entity()
@@ -6,18 +6,18 @@ export class Partai {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  nama_partai: string;
+  @Column({ name: "nama_partai" })
+  namaPartai: string;
 
-  @Column()
-  ketua_umum: string;
+  @Column({ name: "ketua_umum" })
+  ketuaUmum: string;
 
   @Column({ type: "json", nullable: true })
-  visi_misi: string[];
+  visiMisi: string[];
 
   @Column()
   alamat: string;
 
-  @ManyToOne((type) => Candidate, (paslon) => paslon.parties)
-  paslon: Candidate;
+  @ManyToMany(() => Candidate, (candidates) => candidates.partai)
+  paslon: Candidate[];
 }

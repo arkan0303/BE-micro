@@ -1,20 +1,26 @@
 import { Request, Response } from "express";
 import CandidateService from "../services/CandidateService";
 
+const candidateService = new CandidateService();
+
 export default new (class CandidateControler {
-  async create(req: Request, res: Response) {
-    await CandidateService.create(req, res);
-  }
+  createCandidate = async (req: Request, res: Response): Promise<Response> => {
+    return candidateService.create(req, res);
+  };
 
-  async find(req: Request, res: Response) {
-    await CandidateService.find(req, res);
-  }
+  getAllCandidates = async (req: Request, res: Response): Promise<Response> => {
+    return candidateService.findAll(req, res);
+  };
 
-  async update(req: Request, res: Response) {
-    await CandidateService.update(req, res);
-  }
+  updateCandidate = async (req: Request, res: Response): Promise<Response> => {
+    return candidateService.update(req, res);
+  };
 
-  async delete(req: Request, res: Response) {
-    await CandidateService.delete(req, res);
-  }
+  deleteCandidate = async (req: Request, res: Response): Promise<Response> => {
+    return candidateService.delete(req, res);
+  };
+
+  getCandidateById = async (req: Request, res: Response): Promise<Response> => {
+    return candidateService.findById(req, res);
+  };
 })();

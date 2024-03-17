@@ -2,6 +2,11 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Vote } from "./Vote";
 import { Article } from "./Article";
 
+export enum UserStatus {
+  USER = "user",
+  ADMIN = "admin",
+}
+
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -16,8 +21,8 @@ export class User {
   @Column()
   jenisKelamin: string;
 
-  @Column()
-  status: string;
+  @Column({ type: "enum", enum: UserStatus, default: UserStatus.USER }) // Gunakan enum di sini
+  status: UserStatus;
 
   @Column()
   email: string;
