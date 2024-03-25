@@ -21,7 +21,7 @@ export class User {
   @Column()
   jenisKelamin: string;
 
-  @Column({ type: "enum", enum: UserStatus, default: UserStatus.USER }) // Gunakan enum di sini
+  @Column({ type: "enum", enum: UserStatus, default: UserStatus.USER })
   status: UserStatus;
 
   @Column()
@@ -40,5 +40,5 @@ export class User {
     onUpdate: "CASCADE",
     onDelete: "CASCADE",
   })
-  article: Article[];
+  articles: Article[];
 }

@@ -23,6 +23,9 @@ export class Candidate {
   @Column({ type: "json", nullable: true })
   visiMisi: string[];
 
+  @Column({ nullable: true })
+  picture: string;
+
   @ManyToMany(() => Partai, (partai) => partai.paslon, { cascade: true })
   @JoinTable()
   partai: Partai[];

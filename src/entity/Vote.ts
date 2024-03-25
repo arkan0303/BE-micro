@@ -7,10 +7,9 @@ export class Vote {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne((type) => User, (user) => user.votes)
+  @ManyToOne(() => User, (user) => user.votes)
   user: User;
 
-  // Relasi dengan tabel Candidate (many-to-one)
-  @ManyToOne((type) => Candidate, (paslon) => paslon.votes)
+  @ManyToOne(() => Candidate, (paslon) => paslon.votes)
   paslon: Candidate;
 }

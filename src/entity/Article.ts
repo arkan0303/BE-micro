@@ -1,3 +1,4 @@
+// Article.ts
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 import { User } from "./User";
 
@@ -7,13 +8,10 @@ export class Article {
   id: number;
 
   @Column()
-  author: string;
-
-  @Column()
   title: string;
 
-  @Column("date")
-  date: string;
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  createdAt: Date;
 
   @Column()
   description: string;
@@ -21,6 +19,9 @@ export class Article {
   @Column({ nullable: true })
   picture: string;
 
-  @ManyToOne(() => User, (user) => user.article)
+  @ManyToOne(() => User, (user) => user.articles)
   user: User;
+
+  @Column()
+  username: string;
 }

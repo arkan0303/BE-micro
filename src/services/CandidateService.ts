@@ -34,7 +34,7 @@ export default class CandidateService {
         namaPaslon: nama_paslon,
         nomorUrut: nomor_urut,
         visiMisi: visi_misi,
-        partai: partais, // Hubungkan Paslon dengan Partai yang dipilih
+        partai: partais,
       });
 
       // Simpan Paslon ke dalam basis data
